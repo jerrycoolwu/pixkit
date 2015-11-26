@@ -18,7 +18,7 @@ namespace pixkit{
 
 	class Timer{
 	public:	
-		Timer::Timer(const std::string t = "Timer"):title(t){
+		Timer(const std::string t = "Timer"):title(t){
 			is_started = false; start_clock = 0; cumulative_clock = 0; n_starts = 0;
 		}
 		~Timer(){	if (is_started) printf("pixkit::timer '%s' is started and is being destroyed.\n", title.c_str());	}
@@ -27,8 +27,8 @@ namespace pixkit{
 		void Stop();
 		void Reset();
 
-		bool Report();
-		bool StopAndReport() { Stop(); return Report(); }
+		float Report();
+		float StopAndReport() { Stop(); return Report(); }
 		float TimeInSeconds();
 
 		float AvgTime(){assert(is_started == false); return TimeInSeconds()/n_starts;}
@@ -37,8 +37,8 @@ namespace pixkit{
 		const std::string title;
 
 		bool is_started;
-		unsigned int start_clock;
-		unsigned int cumulative_clock;
+		unsigned long long int start_clock;
+		unsigned long long int cumulative_clock;
 		unsigned int n_starts;
 	};
 }
